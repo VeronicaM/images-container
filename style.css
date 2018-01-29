@@ -1,0 +1,16 @@
+.container {
+    display: table-cell;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-right: 5%;
+    margin-bottom: 10px;
+}
