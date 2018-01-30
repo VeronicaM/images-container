@@ -1,9 +1,5 @@
 .container {
-    display: table-cell;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-around;
+    margin: 10px;
 }
 
 .square {
@@ -11,6 +7,5 @@
     height: 200px;
     border: 1px solid black;
     box-sizing: border-box;
-    margin-right: 5%;
     margin-bottom: 10px;
 }

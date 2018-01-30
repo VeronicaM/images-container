@@ -44,6 +44,7 @@ var ImageContainer = (function() {
             className: "square"
         }
     ];
+    var minDistance = 10;
     //ImageContainer Component API
     return {
         init: initComponent
@@ -63,6 +64,40 @@ var ImageContainer = (function() {
             }
             return addImages(imagesArray);
         });
+        spaceImages();
+        $(window).resize(function() {
+            spaceImages();
+        });
+    }
+
+    function spaceImages() {
+        container.each(function() {
+            var distance = getDistaceBetweenImages($(this), this.clientWidth);
+            addDistanceToImages($(this), distance);
+        });
+    }
+
+    function getDistaceBetweenImages(containerElement, clientWidth) {
+        var countImgs = containerElement.children().length;
+        var imgWidth = containerElement.children().width();
+        var totalImgsWidth = countImgs * (imgWidth + minDistance) - minDistance;
+        var spaceBetween = minDistance;
+        if (clientWidth < totalImgsWidth) {
+            while (clientWidth < totalImgsWidth) {
+                totalImgsWidth -= imgWidth + minDistance;
+                countImgs--;
+            }
+            spaceBetween = (clientWidth - totalImgsWidth) / countImgs;
+        }
+        return spaceBetween;
+    }
+
+    function addDistanceToImages(element, distance) {
+        element.children().css("margin-right", distance + "px");
+        element
+            .children()
+            .last()
+            .css("margin-right", 0);
     }
 
     function addImages(array) {
